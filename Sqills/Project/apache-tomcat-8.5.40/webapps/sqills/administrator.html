@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Administrator</title>
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- Bootstrap core CSS -->
+	<link href="/sqills/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="/sqills/css/mdb.css" rel="stylesheet">
+	<link href="/sqills/css/addons/datatables.min.css" rel="stylesheet">
+	<link href="/sqills/css/addons/datatables-select.min.css" rel="stylesheet">
+	<!-- Your custom styles (optional) -->
+	<link href="/sqills/css/administrator.min.css" rel="stylesheet">
+	<!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/apple-touch-icon-144x144.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/apple-touch-icon-152x152.png"/>
+    <link rel="icon" type="image/png" href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/favicon-16x16.png" sizes="16x16"/>
+</head>
+
+<body>
+	<!-- Content -->
+	<div class="container-fluid">
+		<div class="text-center">
+			<button type="button" class="btn btn-outline-info btn-rounded btn-sm waves-effect" id="logout">Logout</button>
+			<button class="btn btn-info btn-rounded btn-sm" id="addButton">Add
+				<i class="fas fa-plus-square ml-1"></i>
+			</button>
+			<button class="btn btn-info btn-rounded btn-sm buttonEdit" id="editButton" disabled>Edit
+				<i class="fas fa-pencil-square-o ml-1"></i>
+			</button>
+			<button class="btn btn-danger btn-sm btn-rounded buttonDelete" id="deleteButton" disabled>Delete
+				<i class="fas fa-times ml-1"></i>
+			</button>
+		</div>
+		<table id="dt-select" class="table table-striped table-bordered" style="width: 100%">
+		    <thead>
+		        <tr>
+		        	<th>Room</th>
+		            <th>Start time</th>
+		            <th>End time</th>
+		            <th>User</th>
+		            <th>Name</th>
+		            <th>Number of attendees</th>
+		            <th>Visible</th>
+		        </tr>
+		    </thead>
+		    <tfoot>
+		        <tr>
+		        	<th>Room</th>
+		            <th>Start time</th>
+		            <th>End time</th>
+		            <th>User</th>
+		            <th>Name</th>
+		            <th>Number of attendees</th>
+		            <th>Visible</th>
+		        </tr>
+		    </tfoot>
+		</table>
+	</div>
+	<!-- /Content -->
+	<!-- Modal -->
+    <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header text-center">
+	                <h4 class="modal-title w-100 font-weight-bold">Add reservation</h4>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <!--Body-->
+				<div class="modal-body">
+					<!--Body-->
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								<input type="email" id="email" class="form-control invalid">
+								<label for="email">Email</label>
+							</div>
+						</div>
+						<div class="col-2">
+							<div class="md-form">
+								<i class="fas fa-plus fa-2x float-right orange-text" aria-hidden="true" id="addAdditionalAttendee"></i>
+							</div>
+						</div>
+						<div class="col-2">
+							<div class="md-form">
+								<i class="fas fa-minus fa-2x float-right orange-text" aria-hidden="true" id="removeAdditionalAttendee"></i>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								<input type="text" id="name" class="form-control">
+								<label for="name">Name of meeting (optional)</label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form switch">
+								<label>Private <input type="checkbox" id="visible" checked><span class="lever"></span> Public</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								<select class="mdb-select colorful-select dropdown-warning" searchable="Search room.." id="room">
+									<option value="" disabled selected>Choose room</option>
+								</select>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form">
+								<input type="text" id="date" class="form-control datepicker">
+								<label for="date">Choose date</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								<input type="text" id="startTime" class="form-control timepicker">
+								<label for="startTime">Choose start time</label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form">
+								<input type="text" id="endTime" class="form-control timepicker">
+								<label for="endTime">Choose end time</label>
+							</div>
+						</div>
+					</div>
+					<!--Grid row-->
+					<div class="row d-flex align-items-center mb-4">
+						<!--Grid column-->
+						<div class="text-center mb-3 col-md-12">
+							<button type="button" class="btn btn-warning btn-block btn-rounded z-depth-1" id="addReservationButton"><strong class="black-text">Add reservation</strong></button>
+						</div>
+						<!--Grid column-->
+					</div>
+					<!--Grid row-->
+				</div>
+	        </div>
+	    </div>
+	</div>
+	<!-- /Modal -->
+	<!-- Modal -->
+    <div class="modal fade" id="modalEditReservation" tabindex="-1" role="dialog" aria-labelledby="modalEditReservation" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header text-center">
+	                <h4 class="modal-title w-100 font-weight-bold">Edit reservation</h4>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <!--Body-->
+				<div class="modal-body">
+					<!--Body-->
+					<div class="md-form">
+						<input type="email" id="email2" class="form-control" readonly>
+						<label for="email">Email</label>
+					</div>
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								<input type="text" id="name2" class="form-control">
+								<label for="name">Name of meeting (optional)</label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form switch">
+								<label>Private <input type="checkbox" id="visible2" checked><span class="lever"></span> Public</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								<select class="mdb-select colorful-select dropdown-warning" searchable="Search room.." id="room2">
+									<option value="" disabled selected>Choose room</option>
+								</select>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form">
+								<input type="text" id="date2" class="form-control datepicker">
+								<label for="date">Choose date</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col">
+							<div class="md-form">
+								<input type="text" id="startTime2" class="form-control timepicker">
+								<label for="startTime">Choose start time</label>
+							</div>
+						</div>
+						<div class="col">
+							<div class="md-form">
+								<input type="text" id="endTime2" class="form-control timepicker">
+								<label for="endTime">Choose end time</label>
+							</div>
+						</div>
+					</div>
+					<!--Grid row-->
+					<div class="row d-flex align-items-center mb-4">
+						<!--Grid column-->
+						<div class="text-center mb-3 col-md-12">
+							<button type="button" class="btn btn-warning btn-block btn-rounded z-depth-1" id="editReservation"><strong class="black-text">Edit reservation</strong></button>
+						</div>
+						<!--Grid column-->
+					</div>
+					<!--Grid row-->
+				</div>
+	        </div>
+	    </div>
+	</div>
+	<!-- /Modal -->
+	<!-- Modal -->
+	<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDelete" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title w-100 font-weight-bold ml-5 text-danger">Delete</h4>
+					<button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body mx-3">
+					<p class="text-center h4">Are you sure to delete selected row?</p>
+				</div>
+				<div class="modal-footer d-flex justify-content-center deleteButtonsWrapper">
+					<button type="button" class="btn btn-danger btnYesClass" id="btnYes" data-dismiss="modal">Yes</button>
+					<button type="button" class="btn btn-primary btnNoClass" id="btnNo" data-dismiss="modal">No</button>
+				</div>
+			</div>
+	    </div>
+	</div>
+	<!-- /Modal -->
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="/sqills/js/jquery-3.4.0.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="/sqills/js/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="/sqills/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="/sqills/js/mdb.js"></script>
+	<script type="text/javascript" src="/sqills/js/addons/datatables.min.js"></script>
+	<script type="text/javascript" src="/sqills/js/addons/datatables-select.min.js"></script>
+	<script type="text/javascript" src="/sqills/js/administrator.min.js"></script>
+</body>
+
+</html>

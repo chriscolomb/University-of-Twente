@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-room="{room}">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Sqills - Room {room}</title>
+	<!-- Font -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300i&display=swap">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Material Design Bootstrap -->
+	<link href="/sqills/css/compiled-4.8.2.css" rel="stylesheet">
+	<!-- Custom styles -->
+	<link rel="stylesheet" href="/sqills/css/room.css">
+	<!-- Icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	      href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152"
+	      href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/favicon-32x32.png"
+	      sizes="32x32" />
+	<link rel="icon" type="image/png" href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/favicon-16x16.png"
+	      sizes="16x16" />
+</head>
+
+<body>
+	<!-- Content -->
+	<div id="header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm">
+					<img alt="logo" src="/sqills/assets/Logomap/Sqills-White.png" style="width: 13vw;">
+				</div>
+				<div class="col-sm-" style="text-align: center; font-size: 4vw">Room {room}</div>
+				<div class="col-sm" style="text-align: right; font-size: 4vw">
+					<span id="clock"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="status-success" id="statusContainer">
+		<div class="container-fluid">
+			<div class="row" style="text-align: center; font-size: 10vw;">
+				<div class="col" style="margin-top: 20vh;">
+					<p id="status"></p>
+					<p class="information" id="time"></p>
+					<p class="information" id="additionalInformation"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footerDrawer">
+		<div class="open">
+			<img class="mx-auto d-block" alt="logo" id="arrow" src="/sqills/assets/icons/PNG/arrow.png"
+			     style="width: 3.5vw; margin-bottom: -4vh;">
+			<p style="text-align: center; font-size: 3vw;">Room schedule</p>
+		</div>
+		<div class="content">
+			<!-- Room schedule -->
+		</div>
+	</div>
+	<div id="footer">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3" style="font-size: 3vw;">
+					<button class="btn btn-outline-light" id="reservation">Make reservation</button>
+				</div>
+				<div id="clickable" class="col-sm-6" style="pointer-events: none; align: center; font-size: 3vw;">
+				</div>
+				<div class="col-sm-3" style="text-align: right; font-size: 3vw;">
+					<a class="btn btn-outline-light" href="/sqills">See other rooms</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Modal reservation form -->
+	<div class="modal fade" id="modalReservationForm" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header text-center">
+	                <h4 class="modal-title w-100 font-weight-bold" style="color: black;">Make reservation</h4>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <div class="modal-body mx-3">
+	                <!-- <div class="md-form mb-5">
+	                    <i class="fas fa-user prefix grey-text"></i>
+	                    <input type="text" id="orangeForm-name" class="form-control validate">
+	                    <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+	                </div>
+	                <div class="md-form mb-5">
+	                    <i class="fas fa-envelope prefix grey-text"></i>
+	                    <input type="email" id="orangeForm-email" class="form-control validate">
+	                    <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+	                </div>
+	                <div class="md-form mb-4">
+	                    <i class="fas fa-lock prefix grey-text"></i>
+	                    <input type="password" id="orangeForm-pass" class="form-control validate">
+	                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+	                </div> -->
+					<!-- Form -->
+					<form class="text-center" style="color: #757575;">
+						<!-- E-mail -->
+						<div class="md-form mt-0">
+							<input type="email" id="reservationFormEmail" class="form-control" name="email">
+							<label for="reservationFormEmail">E-mail</label>
+							<div class="invalid-feedback"></div>
+						</div>
+						<div class="form-row" id="privateInformation">
+							<div class="col md-form">
+								<!-- Meeting name -->
+								<input type="text" id="reservationFormMeetingName" class="form-control" name="meetingName">
+								<label for="reservationFormMeetingName">Meeting name</label>
+								<div class="invalid-feedback"></div>
+							</div>
+							<div class="col md-form">
+								<!-- Number of attendees -->
+								<input type="number" id="reservationFormNumberOfAttendees" class="form-control" min="1" name="numberOfAttendees">
+								<label for="reservationFormNumberOfAttendees">Number of attendees</label>
+								<div class="invalid-feedback"></div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col">
+								<!-- Room -->
+								<select class="mdb-select md-form" id="reservationFormRoom" name="room">
+									<option value="" disabled selected>Choose room</option>
+								</select>
+								<div class="invalid-feedback"></div>
+							</div>
+							<div class="col md-form">
+								<!-- Date -->
+								<input placeholder="Selected date" type="text" id="reservationFormDate" class="form-control datepicker" name="date">
+								<label for="reservationFormDate">Date</label>
+								<div class="invalid-feedback"></div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col md-form">
+								<!-- Start time -->
+								<input placeholder="Selected time" type="text" id="reservationFormStartTime" class="form-control timepicker" name="startTime">
+								<label for="reservationFormStartTime">Start time</label>
+								<div class="invalid-feedback"></div>
+							</div>
+							<div class="col md-form">
+								<!-- End time -->
+								<input placeholder="Selected time" type="text" id="reservationFormEndTime" class="form-control timepicker" name="endTime">
+								<label for="reservationFormEndTime">End time</label>
+								<div class="invalid-feedback"></div>
+							</div>
+						</div>
+						<!-- Private meeting -->
+			            <div class="form-check">
+			                <input type="checkbox" class="form-check-input" id="reservationFormPrivateMeeting" name="privateMeeting">
+			                <label class="form-check-label" for="reservationFormPrivateMeeting">I want this meeting to be private</label>
+			            </div>
+					</form>
+					<!-- Form -->
+	            </div>
+	            <div class="modal-footer d-flex justify-content-center">
+	                <button class="btn btn-deep-orange" id="reservationFormButton">Make reservation</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<!-- /Modal reservation form -->
+	<!-- Central Modal Medium Success -->
+	<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-notify modal-success" role="document">
+			<!-- Content -->
+			<div class="modal-content">
+				<!-- Header -->
+				<div class="modal-header">
+					<p class="heading lead">Reservation was made successfully!</p>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true" class="white-text">&times;</span>
+					</button>
+				</div>
+				<!-- Body -->
+				<div class="modal-body">
+					<div class="text-center">
+						<i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+						<p id="reservationSuccessMessage"></p>
+					</div>
+				</div>
+				<!-- Footer -->
+				<div class="modal-footer justify-content-center">
+					<a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Okay</a>
+				</div>
+			</div>
+			<!-- /Content -->
+		</div>
+	</div>
+	<!-- /Central Modal Medium Success-->
+	<!-- /Content -->
+
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- jQueryRotate -->
+	<script src="http://jqueryrotate.com/js/jQueryRotateCompressed.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="/sqills/js/compiled.192.js"></script>
+	<script src="/sqills/js/room.js"></script>
+	<script>
+		$(function () {
+			$.getJSON("/sqills/api/rooms", function (data) {
+				var options;
+				options = $("#reservationFormRoom").prop("options");
+				$.each(data, function (index, element) {
+					var option;
+					option = $(new Option(element.id, element.id)).data("capacity", element.capacity).get(0);
+					options.add(option);
+				});
+			});
+			$(".mdb-select").materialSelect();
+			(function () {
+				var date;
+				date = new Date().toString().substring(4, 15);
+				$(".datepicker").pickadate({
+					min: date
+				}).val(date);
+			})();
+			(function () {
+				var date;
+				date = new Date();
+				$(".timepicker").pickatime();
+				$("#reservationFormStartTime").val(date.toString().substring(16, 21));
+				$("#reservationFormEndTime").val(new Date(date.getTime() + 1800000).toString().substring(16, 21));
+			})();
+			$("#reservationFormPrivateMeeting").change(function (event) {
+				if (event.target.checked) {
+					$("#privateInformation").prop("hidden", true).find("input").val("");
+				} else {
+					$("#privateInformation").prop("hidden", false);
+				}
+			});
+			$("#reservationFormButton").click(function () {
+				var email, meetingName, numberOfAttendees, room, date, startTime, endTime, privateMeeting;
+			});
+		});
+	</script>
+</body>
+
+</html>

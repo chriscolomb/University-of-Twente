@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jdo2-api-2.3-eb-sources">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/google-api-java-client/libs-sources/jdo2-api-2.3-eb-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

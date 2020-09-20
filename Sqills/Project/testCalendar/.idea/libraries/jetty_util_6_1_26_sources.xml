@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jetty-util-6.1.26-sources">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/google-api-java-client/libs-sources/jetty-util-6.1.26-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

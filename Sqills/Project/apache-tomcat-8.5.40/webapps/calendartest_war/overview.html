@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Overview</title>
+<!-- Font -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:300i&display=swap">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<!-- Custom styles -->
+<link rel="stylesheet" type="text/css"
+	href="/sqills/css/overview.css?version=67">
+
+<!-- Icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon-precomposed" sizes="152x152"
+	href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/apple-touch-icon-152x152.png" />
+<link rel="icon" type="image/png"
+	href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/favicon-32x32.png"
+	sizes="32x32" />
+<link rel="icon" type="image/png"
+	href="https://www.sqills.com/wp-content/themes/sqills/static/favicons/favicon-16x16.png"
+	sizes="16x16" />
+</head>
+
+
+
+<body>
+	<!-- Content -->
+	<div class="container-fluid" style="height: 100%;">
+		<div id="header">
+			<div class="row">
+				<img src="/sqills/assets/Logomap/Sqills-White.png"
+					style="float: left; width: 180px; position: absolute; margin-top: 5px; margin-left: 15px">
+
+				<h1 class="col"
+					style="color: white; float: left; font-size: 4vw; text-align: right; line-height: 80px; margin-top: 20px"
+					id="clock"></h1>
+
+			</div>
+		</div>
+		<div class="scrollable">
+			<div id="rooms"></div>
+		</div>
+
+		<div id="footer">
+			<div class="row">
+				<div class="col-sm-4" style="text-align: right; font-size: 3vw;">
+					<a class="btn btn-outline-light btn-lg" data-toggle="modal"
+						data-target="#exampleModal">Set default room</a>
+				</div>
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4" style="font-size: 3vw;">
+					<button class="btn btn-outline-light btn-lg" id="standardRoom"></button>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h6 "class="modal-title" id="exampleModalLabel">Set default
+							room</h6>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div style="color: black;" class="modal-body">
+
+						<div id="text1">
+							Choose one of the rooms below to be the default room for this
+							device.<br>When there is no user input on the room page, the
+							default room will be displayed again automatically.
+						</div>
+						<br> <select class="form-control form-control-lg"
+							id="dropdown">
+							<option value="" disabled selected>Choose a default room</option>
+						</select>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="submit" id="submitbtn" class="btn"
+							style="background-color: #fd7e14; color: white"
+							data-dismiss="modal">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<img id="arrowright" src="assets/icons/PNG/arrow-right.png"
+		class="vert-move"></img>
+
+
+
+
+	<!-- /Content -->
+
+	<!-- SCRIPTS -->
+	<!-- JQuery -->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="/sqills/js/overview.js?v=55"></script>
+	<script src="/sqills/js/timer.js?version=68"></script>
+
+</body>
+
+</html>
